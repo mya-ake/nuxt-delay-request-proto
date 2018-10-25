@@ -14,9 +14,9 @@
 <script>
 export default {
   async asyncData({ app }) {
-    const response = await app.$_resources.get({ url: '/users' })
+    const response = await app.$_resources.delay.get({ url: '/users' })
     return {
-      users: response.data,
+      users: 'data' in response ? response.data : [],
     }
   },
 
@@ -24,6 +24,15 @@ export default {
     return {
       users: [],
     }
+  },
+
+  async mounted() {
+    const responses = await this.$_resources.requestTemp()
+    if (responses.length === 0) {
+      return
+    }
+    const [response] = responses
+    this.users = 'data' in response ? response.data : []
   },
 }
 </script>
