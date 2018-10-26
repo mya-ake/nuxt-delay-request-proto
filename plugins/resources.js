@@ -1,9 +1,11 @@
+import Vue from 'vue'
+
 import { buildPlugin } from '@/lib/resources'
 
-export default ({ $axios }, inject) => {
-  const plugins = buildPlugin({ client: $axios })
+export default ({ app, $axios }, inject) => {
+  const { router } = app
+  const { resources, ResroucePlugin } = buildPlugin({ client: $axios })
 
-  Object.entries(plugins).forEach(([key, plugin]) => {
-    inject(key, plugin)
-  })
+  Vue.use(ResroucePlugin)
+  inject('_resources', resources)
 }
