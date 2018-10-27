@@ -1,9 +1,9 @@
 export default resources => {
   const install = Vue => {
     Vue.mixin({
-      async beforeRouteEnter(to, from, next) {
-        const responses = await resources.requestTemp()
-        next(vm => {
+      beforeRouteEnter(to, from, next) {
+        next(async vm => {
+          const responses = await resources.requestTemp()
           responses.forEach(response => {
             if (response.status !== 200) {
               return

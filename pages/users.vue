@@ -8,7 +8,6 @@
         <span>{{ user.name }}</span>
       </li>
     </ul>
-    <SsampleTest/>
   </section>
 </template>
 

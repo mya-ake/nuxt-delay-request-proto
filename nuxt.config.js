@@ -1,4 +1,5 @@
 const pkg = require('./package')
+const path = require('path')
 
 module.exports = {
   mode: 'universal',
@@ -29,13 +30,14 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['@/plugins/resources'],
+  plugins: [],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
+    path.resolve('modules/resource/module.js'),
     '@nuxtjs/axios',
   ],
   /*
